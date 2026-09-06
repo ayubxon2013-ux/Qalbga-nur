@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Qalbga Nur — Qur'on, hadislar va ishonchli ma'rifiy manbalar asosidagi online kitob.">
+
+    <meta name="theme-color" content="#0c3b2e">
+
+    <title>Qalbga Nur — Online Kitob</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-logo">☪</div>
+    <div class="loading-title">Qalbga Nur</div>
+    <div class="loading-spinner"></div>
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <button
+            id="mobileMenuBtn"
+            class="icon-btn mobile-menu-btn"
+            aria-label="Menyu">
+            ☰
+        </button>
+
+        <a href="#" class="brand" id="brandHome">
+
+            <div class="brand-icon">
+                ☪
+            </div>
+
+            <div class="brand-text">
+                <strong>Qalbga Nur</strong>
+                <span>Online kitob</span>
+            </div>
+
+        </a>
+
+
+        <nav id="mainNav" class="main-nav">
+
+            <button
+                class="nav-link active"
+                data-page="home">
+                🏠 Bosh sahifa
+            </button>
+
+            <button
+                class="nav-link"
+                data-page="chapters">
+                📚 Boblar
+            </button>
+
+            <button
+                class="nav-link"
+                data-page="bookmarks">
+                🔖 Saqlanganlar
+            </button>
+
+            <button
+                class="nav-link"
+                data-page="about">
+                ℹ️ Haqida
+            </button>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <button
+                id="searchBtn"
+                class="icon-btn"
+                aria-label="Qidirish">
+                🔎
+            </button>
+
+            <button
+                id="themeBtn"
+                class="icon-btn"
+                aria-label="Rejim">
+                🌙
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     SEARCH OVERLAY
+===================================================== -->
+
+<div id="searchOverlay" class="search-overlay">
+
+    <div class="search-box">
+
+        <button
+            id="closeSearch"
+            class="search-close"
+            aria-label="Yopish">
+            ×
+        </button>
+
+        <div class="search-icon">
+            🔎
+        </div>
+
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="Kitobdan qidiring..."
+            autocomplete="off"
+        >
+
+        <div id="searchResults" class="search-results"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main id="app">
+
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<section id="homePage" class="page-section active">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ✨ Qalbga nur, hayotga ma'no
+            </div>
+
+            <h1>
+                Qalbga <span>Nur</span>
+            </h1>
+
+            <p>
+                Qalbni poklash, iymonni mustahkamlash
+                va go‘zal hayot sari kichik bir qadam.
+            </p>
+
+            <div class="hero-actions">
+
+                <button
+                    id="startReadingBtn"
+                    class="primary-btn">
+                    📖 O‘qishni boshlash
+                </button>
+
+                <button
+                    id="continueReadingBtn"
+                    class="secondary-btn">
+                    ▶️ Davom ettirish
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-decoration">
+
+            <div class="moon">☾</div>
+
+            <div class="hero-card">
+
+                <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+
+                <small>
+                    Mehribon va rahmli Alloh nomi bilan
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATS
+    ================================================= -->
+
+    <section class="stats-section">
+
+        <div class="stat-card">
+            <strong id="chapterCount">0</strong>
+            <span>Bob</span>
+        </div>
+
+        <div class="stat-card">
+            <strong id="pageCount">0</strong>
+            <span>Sahifa</span>
+        </div>
+
+        <div class="stat-card">
+            <strong id="bookmarkCount">0</strong>
+            <span>Saqlangan</span>
+        </div>
+
+        <div class="stat-card">
+            <strong id="progressPercent">0%</strong>
+            <span>O‘qilgan</span>
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CATEGORIES
+    ================================================= -->
+
+    <section class="content-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">Kitob bo‘limlari</span>
+
+                <h2>
+                    O‘zingizga kerakli mavzuni tanlang
+                </h2>
+            </div>
+
+            <button
+                id="allChaptersBtn"
+                class="text-btn">
+                Barchasini ko‘rish →
+            </button>
+
+        </div>
+
+
+        <div
+            id="categoryGrid"
+            class="category-grid">
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FEATURED CHAPTERS
+    ================================================= -->
+
+    <section class="content-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">Tavsiya etiladi</span>
+
+                <h2>
+                    O‘qishni boshlash uchun
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div
+            id="featuredGrid"
+            class="chapter-grid">
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         WISDOM
+    ================================================= -->
+
+    <section class="wisdom-section">
+
+        <div class="wisdom-icon">
+            💡
+        </div>
+
+        <div class="wisdom-content">
+
+            <span class="eyebrow">
+                Bugungi hikmat
+            </span>
+
+            <p id="wisdomText">
+                Qalb xotirjamligi Allohni eslashdadir.
+            </p>
+
+        </div>
+
+        <button
+            id="newWisdomBtn"
+            class="icon-btn">
+            🔄
+        </button>
+
+    </section>
+
+</section>
+
+
+<!-- =====================================================
+     CHAPTERS PAGE
+===================================================== -->
+
+<section
+    id="chaptersPage"
+    class="page-section">
+
+    <div class="page-container">
+
+        <div class="page-heading">
+
+            <span class="eyebrow">
+                📚 Kitob
+            </span>
+
+            <h1>
+                Barcha boblar
+            </h1>
+
+            <p>
+                O‘zingizga kerakli mavzuni tanlab o‘qishni boshlang.
+            </p>
+
+        </div>
+
+
+        <div
+            id="allChaptersGrid"
+            class="chapter-grid">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BOOKMARKS PAGE
+===================================================== -->
+
+<section
+    id="bookmarksPage"
+    class="page-section">
+
+    <div class="page-container">
+
+        <div class="page-heading">
+
+            <span class="eyebrow">
+                🔖 Saqlanganlar
+            </span>
+
+            <h1>
+                Saqlab qo‘yilgan sahifalar
+            </h1>
+
+            <p>
+                Keyinroq qaytib o‘qish uchun saqlagan sahifalaringiz.
+            </p>
+
+        </div>
+
+
+        <div
+            id="bookmarksGrid"
+            class="bookmarks-grid">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT PAGE
+===================================================== -->
+
+<section
+    id="aboutPage"
+    class="page-section">
+
+    <div class="page-container about-page">
+
+        <div class="page-heading">
+
+            <span class="eyebrow">
+                ℹ️ Loyiha haqida
+            </span>
+
+            <h1>
+                Qalbga Nur
+            </h1>
+
+        </div>
+
+        <div class="about-card">
+
+            <h2>
+                Qalbga Nur nima?
+            </h2>
+
+            <p>
+                “Qalbga Nur” — inson qalbini yaxshilik,
+                sabr, shukr, tavakkul va go‘zal axloqqa
+                undovchi ma’rifiy online kitob.
+            </p>
+
+            <p>
+                Ushbu loyiha diniy-ma’rifiy bilimlarni
+                sodda va zamonaviy ko‘rinishda o‘qishga
+                qulay qilish maqsadida yaratilgan.
+            </p>
+
+            <div class="about-warning">
+
+                <strong>⚠️ Muhim</strong>
+
+                <p>
+                    Diniy ma’lumotlardan foydalanishda
+                    Qur’on, sahih hadislar va ishonchli
+                    ilmiy manbalarga murojaat qilish tavsiya etiladi.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     READER
+===================================================== -->
+
+<section
+    id="readerPage"
+    class="reader-page">
+
+    <div class="reader-topbar">
+
+        <button
+            id="readerBackBtn"
+            class="reader-control">
+            ← Ortga
+        </button>
+
+        <div class="reader-chapter-name"
+             id="readerChapterName">
+            Bob
+        </div>
+
+        <div class="reader-tools">
+
+            <button
+                id="fontDecrease"
+                class="reader-control"
+                aria-label="Shriftni kichraytirish">
+                A−
+            </button>
+
+            <button
+                id="fontIncrease"
+                class="reader-control"
+                aria-label="Shriftni kattalashtirish">
+                A+
+            </button>
+
+            <button
+                id="readerBookmarkBtn"
+                class="reader-control"
+                aria-label="Saqlash">
+                🔖
+            </button>
+
+            <button
+                id="fullscreenBtn"
+                class="reader-control"
+                aria-label="Fullscreen">
+                ⛶
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="reader-progress">
+
+        <div
+            id="readerProgressBar"
+            class="reader-progress-bar">
+        </div>
+
+    </div>
+
+
+    <article
+        id="readerContent"
+        class="reader-content">
+
+        <div class="reader-category"
+             id="readerCategory">
+        </div>
+
+        <h1 id="readerTitle">
+            Sahifa
+        </h1>
+
+        <div
+            id="readerBody"
+            class="reader-body">
+        </div>
+
+    </article>
+
+
+    <!-- ===============================================
+         READER NAVIGATION
+    ================================================ -->
+
+    <div class="reader-navigation">
+
+        <button
+            id="previousPageBtn"
+            class="reader-nav-btn">
+            ← Oldingi
+        </button>
+
+        <div
+            id="pageIndicator"
+            class="page-indicator">
+            1 / 1
+        </div>
+
+        <button
+            id="nextPageBtn"
+            class="reader-nav-btn">
+            Keyingi →
+        </button>
+
+    </div>
+
+
+    <!-- ===============================================
+         AUDIO
+    ================================================ -->
+
+    <div class="audio-player">
+
+        <div class="audio-info">
+
+            <div class="audio-icon">
+                🎧
+            </div>
+
+            <div>
+
+                <strong>
+                    Yosin surasi
+                </strong>
+
+                <span>
+                    Qiroat
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <audio
+            id="quranAudio"
+            preload="metadata">
+        </audio>
+
+
+        <button
+            id="audioPlayBtn"
+            class="audio-play-btn"
+            aria-label="Audio">
+            ▶
+        </button>
+
+
+        <div class="audio-progress-wrapper">
+
+            <span
+                id="audioCurrentTime">
+                0:00
+            </span>
+
+            <input
+                id="audioProgress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+            >
+
+            <span
+                id="audioDuration">
+                0:00
+            </span>
+
+        </div>
+
+
+        <div class="audio-volume">
+
+            🔊
+
+            <input
+                id="audioVolume"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<button
+    id="backToTopBtn"
+    class="back-to-top"
+    aria-label="Tepaga">
+    ↑
+</button>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+
+            <div class="brand-icon">
+                ☪
+            </div>
+
+            <div>
+                <strong>Qalbga Nur</strong>
+
+                <p>
+                    Qalbga nur, hayotga ma'no.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <button data-page="home">
+                Bosh sahifa
+            </button>
+
+            <button data-page="chapters">
+                Boblar
+            </button>
+
+            <button data-page="bookmarks">
+                Saqlanganlar
+            </button>
+
+        </div>
+
+
+        <div class="footer-copy">
+
+            © <span id="currentYear"></span>
+            Qalbga Nur Ayubxon tomonidan yaratildi.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
